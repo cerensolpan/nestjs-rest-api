@@ -11,6 +11,7 @@ export class BookService {
     ) { }
 
     async findAll(): Promise<Book[]> {
+
         const books = await this.bookModel.find()
         return books;
     }
@@ -35,6 +36,10 @@ export class BookService {
             new: true,
             runValidators: true
         });
+    }
+
+    async deleteById(id: string): Promise<Book> {
+        return await this.bookModel.findByIdAndDelete(id);
     }
 
 }
